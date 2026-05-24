@@ -10,8 +10,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 #-----------------------------------postgresql数据库配置-----------------------------------
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres:lzy3604240993@db.kyxzuqkklicrmrmujnll.supabase.co:5432/postgres"
-engine=create_engine(SQLALCHEMY_DATABASE_URL)
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:lzy3604240993@db.kyxzuqkklicrmrmujnll.supabase.co:5432/postgres?sslmode=require"
+engine=create_engine(
+    SQLALCHEMY_DATABASE_URL,
+    connect_args={'sslmode':'require'}
+)
 
 
 #-----------------------------------sqlite数据库配置-----------------------------------

@@ -9,3 +9,4 @@ pip3 freeze > requirements.txt
 SQLALCHEMY_DATABASE_URL = "postgresql://postgres:lzy3604240993@db.kyxzuqkklicrmrmujnll.supabase.co:5432/postgres"
 engine=create_engine(SQLALCHEMY_DATABASE_URL)
 ```
+### 5、部署时报错
