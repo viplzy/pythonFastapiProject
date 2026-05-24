@@ -10,10 +10,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 #-----------------------------------postgresql数据库配置-----------------------------------
-SQLALCHEMY_DATABASE_URL = "postgresql://postgres.kyxzuqkklicrmrmujnll:lzy3604240993@aws-1-ap-southeast-1.pooler.supabase.com:5432/postgres?sslmode=require"
+SQLALCHEMY_DATABASE_URL = (
+    "postgresql://postgres.kyxzuqkklicrmrmujnll:lzy3604240993"
+    "@aws-1-ap-southeast-1.pooler.supabase.com:6543/postgres"
+    "?sslmode=require"
+)
 engine=create_engine(
-    SQLALCHEMY_DATABASE_URL,
-    connect_args={'sslmode':'require'}
+    SQLALCHEMY_DATABASE_URL
 )
 
 
