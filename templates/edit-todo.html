@@ -1,0 +1,56 @@
+{# ============================================ #}
+{# 编辑待办事项页面                            #}
+{# 功能：修改标题、描述、优先级；删除事项        #}
+{# ============================================ #}
+
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="card">
+        {# 卡片头部：页面标题 #}
+        <div class="card-header">
+            编辑待办事项
+        </div>
+
+        <div class="card-body">
+            {# 编辑表单：POST提交到当前URL（/todos/edit-todo/{todo_id}） #}
+            <form method="post">
+                {# 标题输入字段：回填当前值 #}
+                <div class="form-group mb-3">
+                    <label>标题</label>
+                    <input type="text" class="form-control" name="title"
+                           value="{{ todo.title }}" placeholder="请输入事项标题" required>
+                </div>
+
+                {# 描述输入字段：回填当前值 #}
+                <div class="form-group mb-3">
+                    <label>描述</label>
+                    <textarea class="form-control" name="description"
+                              placeholder="请输入事项详细描述" rows="3" required>{{ todo.description }}</textarea>
+                </div>
+
+                {# 优先级选择字段：根据当前值自动选中对应选项 #}
+                <div class="form-group mb-3">
+                    <label>优先级</label>
+                    <select class="form-control" name="priority">
+                        <option value="1" {% if todo.priority == 1 %} selected {% endif %}>1 - 最低</option>
+                        <option value="2" {% if todo.priority == 2 %} selected {% endif %}>2 - 较低</option>
+                        <option value="3" {% if todo.priority == 3 %} selected {% endif %}>3 - 普通</option>
+                        <option value="4" {% if todo.priority == 4 %} selected {% endif %}>4 - 较高</option>
+                        <option value="5" {% if todo.priority == 5 %} selected {% endif %}>5 - 最高</option>
+                    </select>
+                </div>
+
+                {# 保存按钮 #}
+                <button type="submit" class="btn btn-primary">保存修改</button>
+                {# 删除按钮：跳转到删除路由 #}
+                <button type="button"
+                        onclick="window.location.href='/todos/delete/{{ todo.id }}'"
+                        class="btn btn-danger">删除</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

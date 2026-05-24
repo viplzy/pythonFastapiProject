@@ -1,0 +1,78 @@
+{# ============================================ #}
+{# 待办事项列表页面（首页）                     #}
+{# 功能：展示当前用户的待办事项、完成/撤销、编辑 #}
+{# ============================================ #}
+
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="card text-center">
+        {# 卡片头部：页面标题 #}
+        <div class="card-header">
+            我的待办事项
+        </div>
+
+        <div class="card-body">
+            {# 页面描述信息 #}
+            <h5 class="card-title">待办事项列表</h5>
+            <p class="card-text">
+                以下是你需要完成的所有事项
+            </p>
+
+            {# 待办事项数据表格 #}
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">编号</th>
+                        <th scope="col">事项信息</th>
+                        <th scope="col">操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {# 遍历所有待办事项 #}
+                    {% for todo in todos %}
+                        {% if todo.complete == True %}
+                            {# 已完成事项：绿色背景 + 删除线 #}
+                            <tr class="pointer alert alert-success">
+                                <td>{{ todo.id }}</td>
+                                <td class="strike-through-td">{{ todo.title }}</td>
+                                <td>
+                                    {# 撤销完成按钮：恢复为未完成状态 #}
+                                    <button type="button"
+                                            onclick="window.location.href='/todos/complete/{{ todo.id }}'"
+                                            class="btn btn-success">撤销</button>
+                                    {# 编辑按钮 #}
+                                    <button type="button"
+                                            onclick="window.location.href='/todos/edit-todo/{{ todo.id }}'"
+                                            class="btn btn-info">编辑</button>
+                                </td>
+                            </tr>
+                        {% else %}
+                            {# 未完成事项：普通行 #}
+                            <tr class="pointer">
+                                <td>{{ todo.id }}</td>
+                                <td>{{ todo.title }}</td>
+                                <td>
+                                    {# 完成按钮：标记为已完成 #}
+                                    <button type="button"
+                                            onclick="window.location.href='/todos/complete/{{ todo.id }}'"
+                                            class="btn btn-success">完成</button>
+                                    {# 编辑按钮 #}
+                                    <button type="button"
+                                            onclick="window.location.href='/todos/edit-todo/{{ todo.id }}'"
+                                            class="btn btn-info">编辑</button>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            {# 新增待办事项按钮 #}
+            <a href="/todos/add-todo" class="btn btn-primary">新增待办事项</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

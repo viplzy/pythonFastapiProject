@@ -1,0 +1,52 @@
+{# ============================================ #}
+{# 新增待办事项页面                            #}
+{# 功能：填写标题、描述、优先级并提交创建        #}
+{# ============================================ #}
+
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="card">
+        {# 卡片头部：页面标题 #}
+        <div class="card-header">
+            新增待办事项
+        </div>
+
+        <div class="card-body">
+            {# 新增待办事项表单：POST提交到 /todos/add-todo #}
+            <form method="post" action="/todos/add-todo">
+                {# 标题输入字段 #}
+                <div class="form-group mb-3">
+                    <label>标题</label>
+                    <input type="text" class="form-control" name="title"
+                           placeholder="请输入事项标题" required>
+                </div>
+
+                {# 描述输入字段（多行文本） #}
+                <div class="form-group mb-3">
+                    <label>描述</label>
+                    <textarea class="form-control" name="description"
+                              placeholder="请输入事项详细描述" rows="3" required></textarea>
+                </div>
+
+                {# 优先级选择字段（1-5级） #}
+                <div class="form-group mb-3">
+                    <label>优先级</label>
+                    <select class="form-control" name="priority">
+                        <option value="1">1 - 最低</option>
+                        <option value="2">2 - 较低</option>
+                        <option value="3" selected>3 - 普通</option>
+                        <option value="4">4 - 较高</option>
+                        <option value="5">5 - 最高</option>
+                    </select>
+                </div>
+
+                {# 提交按钮 #}
+                <button type="submit" class="btn btn-primary">添加待办事项</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{# ============================================ #}
+{# 用户登录页面                                #}
+{# 功能：用户名+密码登录、显示成功/错误消息      #}
+{# ============================================ #}
+
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="card">
+        {# 卡片头部：页面标题 #}
+        <div class="card-header">用户登录</div>
+
+        <div class="card-body">
+            {# 消息提示区域：根据msg类型显示不同颜色 #}
+            {% if msg %}
+                {% if msg == '已成功登出' or msg == '用户注册成功，请登录' %}
+                    {# 成功消息：绿色提示框 #}
+                    <div class="alert alert-success" role="alert">
+                        {{ msg }}
+                    </div>
+                {% else %}
+                    {# 错误消息：红色提示框 #}
+                    <div class="alert alert-danger" role="alert">
+                        {{ msg }}
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            {# 登录表单：POST提交到 /auth #}
+            <form method="post" action="/auth">
+                {# 用户名字段 #}
+                <div class="form-group mb-3">
+                    <label>用户名</label>
+                    <input type="text" class="form-control" name="username" required
+                           placeholder="请输入用户名">
+                </div>
+
+                {# 密码字段 #}
+                <div class="form-group mb-3">
+                    <label>密码</label>
+                    <input type="password" class="form-control" name="password" required
+                           placeholder="请输入密码">
+                </div>
+
+                {# 登录提交按钮 #}
+                <button type="submit" class="btn btn-primary">登录</button>
+            </form>
+        </div>
+
+        {# 卡片底部：注册链接 #}
+        <div class="card-footer text-muted">
+            <a href="/auth/register">没有账号？去注册</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

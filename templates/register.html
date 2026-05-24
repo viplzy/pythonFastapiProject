@@ -1,0 +1,79 @@
+{# ============================================ #}
+{# 用户注册页面                                #}
+{# 功能：新用户填写信息完成注册                 #}
+{# 字段：邮箱、用户名、姓、名、密码、确认密码    #}
+{# ============================================ #}
+
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container">
+    <div class="card">
+        {# 卡片头部：页面标题 #}
+        <div class="card-header">用户注册</div>
+
+        <div class="card-body">
+            {# 错误消息提示区域 #}
+            {% if msg %}
+                <div class="alert alert-danger" role="alert">
+                    {{ msg }}
+                </div>
+            {% endif %}
+
+            {# 注册表单：POST提交到 /auth/register #}
+            <form method="post" action="/auth/register">
+                {# 第一行：邮箱和用户名 #}
+                <div class="form-row row mb-3">
+                    <div class="form-group col-md-6">
+                        <label>邮箱</label>
+                        <input type="email" class="form-control" name="email"
+                               placeholder="请输入邮箱" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>用户名</label>
+                        <input type="text" class="form-control" name="username"
+                               placeholder="请输入用户名" required>
+                    </div>
+                </div>
+
+                {# 第二行：姓和名 #}
+                <div class="form-row row mb-3">
+                    <div class="form-group col-md-6">
+                        <label>姓</label>
+                        <input type="text" class="form-control" name="firstname"
+                               placeholder="请输入姓" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label>名</label>
+                        <input type="text" class="form-control" name="lastname"
+                               placeholder="请输入名" required>
+                    </div>
+                </div>
+
+                {# 密码字段 #}
+                <div class="form-group mb-3">
+                    <label>密码</label>
+                    <input type="password" class="form-control" name="password" required
+                           placeholder="请输入密码">
+                </div>
+
+                {# 确认密码字段 #}
+                <div class="form-group mb-3">
+                    <label>确认密码</label>
+                    <input type="password" class="form-control" name="password2" required
+                           placeholder="请再次输入密码">
+                </div>
+
+                {# 注册提交按钮 #}
+                <button type="submit" class="btn btn-primary">注册</button>
+            </form>
+        </div>
+
+        {# 卡片底部：登录链接 #}
+        <div class="card-footer text-muted">
+            <a href="/auth">已有账号？去登录</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
