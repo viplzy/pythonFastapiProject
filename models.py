@@ -48,7 +48,7 @@ class Users(Base):
     role = Column(String)
 
     # 备用字段：电话号码（当前已注释，需要时可取消注释启用）
-    # phone_number = Column(String)
+    phone_number = Column(String)
 
 
 # ============================================
